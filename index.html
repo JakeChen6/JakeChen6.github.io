@@ -5,16 +5,16 @@
   
 
   
-  <title>志社档案馆</title>
+  <title>Zhishe&#39;s 编程世界</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta property="og:type" content="website">
-<meta property="og:title" content="志社档案馆">
+<meta property="og:title" content="Zhishe&#39;s 编程世界">
 <meta property="og:url" content="https:&#x2F;&#x2F;jakechen6.github.io&#x2F;index.html">
-<meta property="og:site_name" content="志社档案馆">
+<meta property="og:site_name" content="Zhishe&#39;s 编程世界">
 <meta property="og:locale" content="en">
 <meta name="twitter:card" content="summary">
   
-    <link rel="alternate" href="/atom.xml" title="志社档案馆" type="application/atom+xml">
+    <link rel="alternate" href="/atom.xml" title="Zhishe&#39;s 编程世界" type="application/atom+xml">
   
   
     <link rel="icon" href="/favicon.png">
@@ -33,7 +33,7 @@
   <div id="header-outer" class="outer">
     <div id="header-title" class="inner">
       <h1 id="logo-wrap">
-        <a href="/" id="logo">志社档案馆</a>
+        <a href="/" id="logo">Zhishe&#39;s 编程世界</a>
       </h1>
       
     </div>
@@ -83,16 +83,49 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>main function is the program entry point.</p>
-<h3 id="Variables"><a href="#Variables" class="headerlink" title="Variables"></a>Variables</h3><p>All variables must be declared before use.<br>Variable declaration: type stated &amp;&amp; memory allocated.</p>
-<p>A char is just a small integer.<br>A character written between single quotes represents an interger value equal to the numerical value of the character in the machine’s character set.<br>So chars may be freely used in arithmetic expressions.</p>
-<h3 id="Functions"><a href="#Functions" class="headerlink" title="Functions"></a>Functions</h3><p>A function provides a convenient way to emcapsulate some computations, which can then be used without worrying about its implementation.</p>
-<p>In C, all function arguments are passed “by value”. This means that the called function is given the values of its arguments in temporary variables rather than the originals.<br>The story is different for arrays. When the name of an array is used as an argument, the value passed to the function is the location or address of the beginning of the array – there is no copying of array elements. By subscripting this value, the function can access and alter any element of the array.</p>
+        <h3 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h3><p>A C program, whatever its size, consists of <em>functions</em> and <em>variables</em>.</p>
+<p>A C program begins its execution at the <em>main</em> function. This means that every C program must have a <em>main</em> somewhere.<br><em>main</em> will usually call other functions to help perform its job.</p>
+<h3 id="Variables"><a href="#Variables" class="headerlink" title="Variables"></a>Variables</h3><p>In C, all variables must be declared before they are used, usually at the beginning of the function before any executable statements.<br>A declaration consists of a type name and a list of variables, such as</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> fahr, celsius;</span><br><span class="line"><span class="keyword">int</span> lower, upper, <span class="built_in">step</span>;</span><br></pre></td></tr></table></figure>
 
+<p>The type <em>int</em> means that the variables listed are integers.</p>
+<h3 id="for-vs-while"><a href="#for-vs-while" class="headerlink" title="for vs. while"></a>for vs. while</h3><p>The <em>for</em> is usually appropriate for loops in which the initialization and increment are single statements and logically related, since it is more compact than <em>while</em> and it keeps the loop control statements together in one place.</p>
+<h3 id="Character-Input-and-Output"><a href="#Character-Input-and-Output" class="headerlink" title="Character Input and Output"></a>Character Input and Output</h3><p>The model of input and output supported by the standard library is very simple. Text input or output, regardless of where it originates or where it goes to, is dealt with as streams of characters. A <em>text stream</em> is a sequence of characters divided into lines; each line consists of zero or more characters followed by a newline character.</p>
+<p>A character written between single quotes represents an interger value equal to the numerical value of the character in the machine’s character set.<br>So <em>chars</em>, which are just small integers, may be freely used in arithmetic expressions.</p>
+<h3 id="Arrays"><a href="#Arrays" class="headerlink" title="Arrays"></a>Arrays</h3><p>The declaration</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> ndigit[<span class="number">10</span>];</span><br></pre></td></tr></table></figure>
+
+<p>declares ndigit to be <strong>an array of</strong> 10 <strong>integers</strong>.</p>
+<h3 id="Functions"><a href="#Functions" class="headerlink" title="Functions"></a>Functions</h3><p>A function provides a convenient way to emcapsulate some computations, which can then be treated as <strong>black-box abstraction</strong> and used without worrying about its implementation.</p>
+<p>“<em>We will generally use parameter for a variable named in the parenthesized list in a function definition, and argument for the value used in a call of the function.</em>“</p>
+<h3 id="Function-Arguments"><a href="#Function-Arguments" class="headerlink" title="Function Arguments"></a>Function Arguments</h3><p>In C, all function arguments are passed “by value”. This means that the called function is given the values of its arguments in temporary variables rather than the originals. The called function cannot directly alter a variable in the calling function; it can only alter its private, temporary copy. One good thing about this mechanism is that parameters can be treated as conveniently initialized local variables in the called routine.</p>
+<p>However, it is possible to arrange for a function to modify a variable in a calling routine. The caller must provide the <strong><em>address</em></strong> of the variable to be set (technically a <strong><em>pointer</em></strong> to the variable), and the called function must declare the parameter to be a pointer and access the variable indirectly through it.</p>
+<p>The story is different for arrays. When the name of an array is used as an argument, the value passed to the function is the address of the beginning of the array. By subscripting this value, the function can access and alter any element of the array.</p>
+<h3 id="External-Variables"><a href="#External-Variables" class="headerlink" title="External Variables"></a>External Variables</h3><p>An external variable must be defined, exactly once, outside of any function; this sets aside storage for it. The variable must also be declared in each function that wants to access it.</p>
+<p>“<em>Definition</em>“ <em>refers to the place where the variable is created or assigned storage;</em> “<em>declaration</em>“ <em>refers to places where the nature of the variable is stated but no storage is allocated.</em></p>
+<h3 id="Data-Types-and-Sizes"><a href="#Data-Types-and-Sizes" class="headerlink" title="Data Types and Sizes"></a>Data Types and Sizes</h3><p>The qualifier <strong><em>signed</em></strong> or <strong><em>unsigned</em></strong> may be applied to <strong><em>char</em></strong> or any <strong><em>integer</em></strong>. unsigned numbers are always non-negative, and obey the laws of arithmetic modulo 2n, where n is the number of bits in the type. So, for instance, if <strong><em>chars</em></strong> are 8 bits, <strong><em>unsigned char</em></strong> variables have values between 0 and 255, while <strong><em>signed chars</em></strong> have values between -128 and 127 (in a two’s complement machine).</p>
+<p>Printable characters are always positive.</p>
+<h3 id="Constants"><a href="#Constants" class="headerlink" title="Constants"></a>Constants</h3><p>An integer constant like 1234 is an int. A long constant is written with a terminal l or L, as in 123456789L; an integer too bit to fit into an int will also be taken as a long. Unsigned constants are written with a terminal u or U, and the suffix ul or UL indicates unsigned long.</p>
+<p>Floating-point constants contain a decimal point (123.4) or an exponent (1e-2) or both; their type is double, unless suffixed. The suffixes f or F indicate a float constant; l or L indicate a long double.</p>
+<p>The character constant <strong>‘\0’</strong> represents the character with numerical value zero, the null character.</p>
+<p>A string constant, or string literal, is a sequence of zero or more characters surrounded by double quotes, as in</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">	<span class="string">"I am a string"</span></span><br><span class="line"><span class="keyword">or</span></span><br><span class="line">	<span class="string">""</span>    <span class="comment">/* the empty string */</span></span><br></pre></td></tr></table></figure>
+
+<p>String constants can be concatenated at compiled time:</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"hello,"</span> <span class="string">" world"</span></span><br></pre></td></tr></table></figure>
+<p>Is equivalent to</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"hello, world"</span></span><br></pre></td></tr></table></figure>
+
+<p>Technically, a string constant is an array of characters.</p>
+<p>An enumeration is a list of constant integer values. Enumerations provide a convenient way to associate constant values with names (like dict in Python), an alternative to <strong>#define</strong> with the advantage that the values can be generated for you.</p>
+<h3 id="Declarations"><a href="#Declarations" class="headerlink" title="Declarations"></a>Declarations</h3><p>External and static variables are initialized to zero by default.<br>Automatic variables for which there is no explicit initializer have undefined (i.e., garbage) values.</p>
+<p>The qualifier <strong>const</strong> can be applied to the declaration of any variable to specify that its value will not be changed. For an array, the <strong>const</strong> qualifier says that the elements will not be altered.</p>
+<p>The <strong>const</strong> declaration can also be used with array arguments, to indicate that the function does not change that array:</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">strlen</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span>[])</span></span>;</span><br></pre></td></tr></table></figure>
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://jakechen6.github.io/2019/11/26/%3CThe%20C%20Programming%20Language%3E%20study%20note/" data-id="ck4l9r3690004clt5a98g9i69" class="article-share-link">Share</a>
+      <a data-url="https://jakechen6.github.io/2019/11/26/%3CThe%20C%20Programming%20Language%3E%20study%20note/" data-id="ck59dgfgf0000fqvf90fvbyxn" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/" rel="tag">C</a></li></ul>
@@ -143,7 +176,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://jakechen6.github.io/2019/11/18/hello-world/" data-id="ck4l9qcs30001clt548l5bupd" class="article-share-link">Share</a>
+      <a data-url="https://jakechen6.github.io/2019/11/18/hello-world/" data-id="ck59dgfgk0001fqvf66o89ee4" class="article-share-link">Share</a>
       
       
     </footer>
@@ -217,7 +250,7 @@
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2019 Zhishe Chen<br>
+      &copy; 2020 Zhishe Chen<br>
       Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>
